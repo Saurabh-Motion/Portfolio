@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#1e1e1e] text-[#ededed] page-scrollable">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Saurabh Kumar — Motion Graphics Designer &amp; Visual Architect</title>
+  <meta name="description" content="Saurabh Kumar is a motion graphics designer and visual architect who brings static vectors to life through rhythm, form, and fluid motion.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: '#1e1e1e',
+            borderDark: '#2d2d2d',
+            textMain: '#ededed',
+            textMuted: '#888888',
+            accentPink: '#ffa6c9',
+            vibrantPink: '#ff0055',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- GSAP & CustomEase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+
+  <!-- Prevent FOUC: Mark js-ready immediately before body renders -->
+  <script>
+    document.documentElement.classList.add('js-ready');
+  </script>
+</head>
+<body class="bg-[#1e1e1e] text-[#ededed] font-sans antialiased selection:bg-white selection:text-black flex flex-col min-h-screen page-scrollable">
+
+  <!-- Subtle Film Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR (Matches Homepage Navigation)
+       ======================================================================== -->
+  <header id="mainHeader" class="w-full border-b border-[#2d2d2d] bg-[#1e1e1e] sticky top-0 z-40">
+    
+    <!-- Desktop Navigation Bar (>= 1024px) -->
+    <div class="hidden lg:flex h-11 lg:h-12 items-center">
+      <!-- Left Column: Logo -->
+      <div class="w-[calc(25%+1.75rem)] px-5 lg:px-7 flex items-center h-full flex-shrink-0">
+        <a href="index.html" class="font-bold text-[15px] tracking-tight text-[#ededed] hover:opacity-80 transition-opacity">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="brand">Saurabh Kumar</span></span>
+        </a>
+      </div>
+
+      <!-- Right Column: Nav Links & Contact -->
+      <div class="flex-1 flex items-center justify-between h-full pr-5 lg:pr-7">
+        <nav class="flex items-center gap-7 text-[13px] tracking-tight" aria-label="Main navigation">
+          <a href="index.html" class="text-[#888888] font-normal hover:text-white transition-colors">
+            <span class="reveal-mask"><span class="reveal-child" data-reveal="navWork">Work</span></span>
+          </a>
+          <a href="about.html" class="text-white font-normal hover:text-white transition-colors">
+            <span class="reveal-mask"><span class="reveal-child" data-reveal="navAbout">About</span></span>
+          </a>
+        </nav>
+
+        <button id="contactNavBtnDesktop" type="button" class="text-[13px] font-normal text-[#ededed] underline underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer border-0 bg-transparent p-0">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="navContact">Contact</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile & Tablet Navigation Bar (< 1024px) -->
+    <div class="flex lg:hidden items-center justify-between h-11 sm:h-12 px-4 sm:px-6 relative w-full">
+      <a href="index.html" class="font-bold text-[15px] tracking-tight text-[#ededed]">
+        <span class="reveal-mask"><span class="reveal-child" data-reveal="brandMobile">Saurabh Kumar</span></span>
+      </a>
+
+      <nav class="flex items-center gap-5 sm:gap-7 text-[13px] tracking-tight" aria-label="Mobile navigation">
+        <a href="index.html" class="text-[#888888] font-normal hover:text-white transition-colors">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="navWorkMobile">Work</span></span>
+        </a>
+        <a href="about.html" class="text-white font-normal">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="navAboutMobile">About</span></span>
+        </a>
+      </nav>
+
+      <button id="contactNavBtnMobile" type="button" class="text-[13px] font-normal text-[#ededed] underline underline-offset-4 hover:opacity-80 cursor-pointer border-0 bg-transparent p-0">
+        <span class="reveal-mask"><span class="reveal-child" data-reveal="navContactMobile">Contact</span></span>
+      </button>
+    </div>
+
+  </header>
+
+  <!-- ========================================================================
+       MAIN ABOUT CONTENT (Editorial Split Layout)
+       ======================================================================== -->
+  <main class="flex-1 w-full flex flex-col">
+    <div class="flex flex-col lg:flex-row divide-y lg:divide-y-0 divide-[#2d2d2d] flex-1">
+
+      <!-- ====================================================================
+           LEFT COLUMN / PROFILE & ESSENTIALS
+           ==================================================================== -->
+      <aside class="w-full lg:w-[calc(25%+1.75rem)] flex-shrink-0 p-5 sm:p-6 lg:p-7 bg-[#1e1e1e] lg:border-r border-[#2d2d2d]">
+        <div class="lg:sticky lg:top-16 flex flex-col justify-between min-h-0 gap-8 lg:gap-10">
+          
+          <!-- Portrait + Dot -->
+          <div class="flex-shrink-0">
+            <div class="flex items-start justify-between gap-4">
+              <!-- Portrait Image -->
+              <div class="w-32 h-32 sm:w-40 sm:h-40 lg:w-[178px] lg:h-[188px] bg-[#222222] border border-[#2e2e2e]/60 overflow-hidden flex-shrink-0">
+                <img id="portraitImg" src="portrait.png" alt="Saurabh Kumar" class="w-full h-full object-cover grayscale contrast-[1.05]" />
+              </div>
+
+              <!-- Solid White Circle Dot -->
+              <div id="portraitDot" class="w-3.5 h-3.5 rounded-full bg-[#ededed] mt-0.5 reveal-dot" aria-hidden="true"></div>
+            </div>
+
+            <!-- Availability Status Pill -->
+            <div class="mt-5 inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#262626] border border-[#363636]">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-[11px] font-medium text-[#cccccc] tracking-tight">Available for select projects</span>
+            </div>
+          </div>
+
+          <!-- Services & Social Links -->
+          <div class="flex flex-col gap-6">
+            <div class="border-t border-[#2d2d2d] pt-5">
+              <div class="text-[#888888] text-[11px] sm:text-xs">
+                <span class="reveal-mask"><span class="reveal-child" data-reveal="services">Services:</span></span>
+              </div>
+              <div class="text-[#ededed] font-semibold mt-1 text-xs sm:text-[13px]">
+                <span class="reveal-mask"><span class="reveal-child" data-reveal="servicesValue">Motion Design, Visual Design</span></span>
+              </div>
+            </div>
+
+            <div class="border-t border-[#2d2d2d] pt-5">
+              <div class="text-[#888888] text-[11px] sm:text-xs mb-1.5">Connect:</div>
+              <div class="flex flex-col space-y-1.5">
+                <a href="https://www.instagram.com/sawrabh.motion/" target="_blank" rel="noopener noreferrer" class="text-[#ededed] font-medium text-xs sm:text-[13px] hover:underline flex items-center justify-between group">
+                  <span class="reveal-mask"><span class="reveal-child" data-reveal="instagram">Instagram</span></span>
+                  <span class="text-[#888888] group-hover:text-white transition-colors text-xs">↗</span>
+                </a>
+                <a href="https://www.linkedin.com/in/saurabhmotion/" target="_blank" rel="noopener noreferrer" class="text-[#ededed] font-medium text-xs sm:text-[13px] hover:underline flex items-center justify-between group">
+                  <span class="reveal-mask"><span class="reveal-child" data-reveal="linkedin">LinkedIn</span></span>
+                  <span class="text-[#888888] group-hover:text-white transition-colors text-xs">↗</span>
+                </a>
+                <button type="button" class="contact-trigger-btn text-left text-[#ededed] font-medium text-xs sm:text-[13px] hover:underline flex items-center justify-between group cursor-pointer border-0 bg-transparent p-0">
+                  <span>Send a message</span>
+                  <span class="text-[#888888] group-hover:text-white transition-colors text-xs">↗</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- ====================================================================
+           RIGHT COLUMN / EDITORIAL CONTENT & EXPERIENCE
+           ==================================================================== -->
+      <section class="flex-1 min-w-0 p-5 sm:p-8 lg:p-12 xl:p-16 flex flex-col gap-14 sm:gap-20 max-w-4xl">
+        
+        <!-- SECTION 1: ABOUT SAURABH -->
+        <article class="flex flex-col gap-6">
+          <div class="reveal-mask">
+            <span class="reveal-child text-xs font-semibold tracking-widest uppercase text-[#888888]" data-reveal="aboutKicker">
+              ABOUT SAURABH
+            </span>
+          </div>
+
+          <!-- Hero statement -->
+          <div class="space-y-4">
+            <h1 class="text-2xl sm:text-3xl lg:text-[34px] font-semibold text-[#ededed] leading-[1.3] tracking-tight">
+              <span class="reveal-mask"><span class="hero-reveal-line inline-block">I'm Saurabh Kumar, a motion graphics designer</span></span>
+              <span class="reveal-mask"><span class="hero-reveal-line inline-block">and <span class="whitespace-nowrap">visual architect</span> who brings static vectors</span></span>
+              <span class="reveal-mask"><span class="hero-reveal-line inline-block">to <span class="whitespace-nowrap">life through</span> rhythm, form, and fluid motion.</span></span>
+            </h1>
+
+            <p class="text-base sm:text-lg lg:text-[19px] text-[#a1a1a1] leading-relaxed font-normal pt-2">
+              <span class="reveal-mask"><span class="hero-reveal-line inline-block">I think with curiosity, design with intention, and move ideas</span></span>
+              <span class="reveal-mask"><span class="hero-reveal-line inline-block">until they feel right in the gut, not just the grid.</span></span>
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 2: HOW I WORK -->
+        <article class="flex flex-col gap-6 pt-4 border-t border-[#2d2d2d]">
+          <div class="reveal-mask">
+            <span class="reveal-child text-xs font-semibold tracking-widest uppercase text-[#888888]" data-reveal="howKicker">
+              HOW I WORK
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-5 text-[15px] sm:text-base text-[#a8a8a8] leading-[1.8] font-normal">
+            <p class="how-reveal-p">
+              How I approach projects is simple: I start by understanding the "why" behind the idea. Whether I'm crafting high-impact performance ads, intricate vector animations, or full-scale digital explainers, I look for the rhythmic thread that ties typography, timing, and visual pacing together.
+            </p>
+            <p class="how-reveal-p">
+              As I continue to evolve professionally, I remain committed to refining my craft, staying curious, and letting each project teach me something new. The tools might change, the mediums might shift, but the intent stays the same: to create work that feels thoughtful, honest, and quietly powerful.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECTION 3: EXPERIENCE -->
+        <article class="flex flex-col gap-4 pt-4 border-t border-[#2d2d2d]">
+          <div class="reveal-mask mb-2">
+            <span class="reveal-child text-xs font-semibold tracking-widest uppercase text-[#888888]" data-reveal="expKicker">
+              EXPERIENCE
+            </span>
+          </div>
+
+          <!-- Experience List -->
+          <div class="divide-y divide-[#2d2d2d]">
+            
+            <!-- Row 1: JUSPAY -->
+            <div class="about-exp-row group">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center gap-2.5">
+                  <h3 class="font-semibold text-base text-[#ededed] group-hover:text-white transition-colors">Motion Graphic Designer</h3>
+                  <span class="tag-badge">Full-time</span>
+                </div>
+                <div class="text-sm text-[#888888] font-medium">JUSPAY</div>
+              </div>
+              <div class="mt-2 sm:mt-0 flex flex-col sm:items-end">
+                <div class="text-xs sm:text-[13px] font-medium text-[#ededed]">May 2025 – Present · 1 yr 5 mos</div>
+                <div class="text-[11px] text-[#888888] mt-0.5">Bengaluru, Karnataka, India · On-site</div>
+              </div>
+            </div>
+
+            <!-- Row 2: Martians Media Production -->
+            <div class="about-exp-row group">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center gap-2.5">
+                  <h3 class="font-semibold text-base text-[#ededed] group-hover:text-white transition-colors">Freelance Motion Graphic Designer</h3>
+                  <span class="tag-badge">Full-time</span>
+                </div>
+                <div class="text-sm text-[#888888] font-medium">Martians Media Production</div>
+              </div>
+              <div class="mt-2 sm:mt-0 flex flex-col sm:items-end">
+                <div class="text-xs sm:text-[13px] font-medium text-[#ededed]">Apr 2024 – May 2025 · 1 yr 2 mos</div>
+                <div class="text-[11px] text-[#888888] mt-0.5">Doha, Qatar · Remote</div>
+              </div>
+            </div>
+
+            <!-- Row 3: Bussin Design Studio -->
+            <div class="about-exp-row group">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center gap-2.5">
+                  <h3 class="font-semibold text-base text-[#ededed] group-hover:text-white transition-colors">Freelance Motion Designer</h3>
+                  <span class="tag-badge">Freelance</span>
+                </div>
+                <div class="text-sm text-[#888888] font-medium">Bussin Design Studio</div>
+              </div>
+              <div class="mt-2 sm:mt-0 flex flex-col sm:items-end">
+                <div class="text-xs sm:text-[13px] font-medium text-[#ededed]">Dec 2023 – Apr 2025 · 1 yr 5 mos</div>
+                <div class="text-[11px] text-[#888888] mt-0.5">India · Remote</div>
+              </div>
+            </div>
+
+            <!-- Row 4: CheQ -->
+            <div class="about-exp-row group">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center gap-2.5">
+                  <h3 class="font-semibold text-base text-[#ededed] group-hover:text-white transition-colors">Motion Graphic Designer</h3>
+                  <span class="tag-badge">Internship</span>
+                </div>
+                <div class="text-sm text-[#888888] font-medium">CheQ</div>
+              </div>
+              <div class="mt-2 sm:mt-0 flex flex-col sm:items-end">
+                <div class="text-xs sm:text-[13px] font-medium text-[#ededed]">Jul 2023 – Mar 2024 · 9 mos</div>
+                <div class="text-[11px] text-[#888888] mt-0.5">Bengaluru, Karnataka, India · Remote</div>
+              </div>
+            </div>
+
+            <!-- Row 5: Rasta -->
+            <div class="about-exp-row group">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center gap-2.5">
+                  <h3 class="font-semibold text-base text-[#ededed] group-hover:text-white transition-colors">Motion Graphic Designer</h3>
+                  <span class="tag-badge">Internship</span>
+                </div>
+                <div class="text-sm text-[#888888] font-medium">Rasta</div>
+              </div>
+              <div class="mt-2 sm:mt-0 flex flex-col sm:items-end">
+                <div class="text-xs sm:text-[13px] font-medium text-[#ededed]">Mar 2023 – Jun 2023 · 4 mos</div>
+                <div class="text-[11px] text-[#888888] mt-0.5">Gurugram, Haryana, India · Remote</div>
+              </div>
+            </div>
+
+            <!-- Row 6: Wildpunch Design -->
+            <div class="about-exp-row group">
+              <div class="flex flex-col gap-1">
+                <div class="flex items-center gap-2.5">
+                  <h3 class="font-semibold text-base text-[#ededed] group-hover:text-white transition-colors">Motion Designer</h3>
+                  <span class="tag-badge">Internship</span>
+                </div>
+                <div class="text-sm text-[#888888] font-medium">Wildpunch Design</div>
+              </div>
+              <div class="mt-2 sm:mt-0 flex flex-col sm:items-end">
+                <div class="text-xs sm:text-[13px] font-medium text-[#ededed]">Jul 2022 – Aug 2022 · 2 mos</div>
+                <div class="text-[11px] text-[#888888] mt-0.5">Lucknow, Uttar Pradesh, India</div>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- SECTION 4: CALL TO ACTION & FOOTER -->
+        <article id="aboutFooterBlock" class="pt-8 border-t border-[#2d2d2d] flex flex-col gap-6">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 bg-[#222222]/40 border border-[#2d2d2d] p-6 sm:p-8 rounded-lg">
+            <div class="space-y-2 max-w-md">
+              <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Have a project in mind?</h3>
+              <p class="text-sm text-[#888888] leading-relaxed">
+                Let's discuss how we can bring your concepts to life through deliberate motion and visual craft.
+              </p>
+            </div>
+            <button type="button" class="contact-trigger-btn inline-flex items-center justify-center px-5 py-3 rounded bg-white text-black font-semibold text-xs sm:text-[13px] hover:bg-neutral-200 transition-colors cursor-pointer border-0 flex-shrink-0">
+              Get in touch
+            </button>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#666666] pt-4 pb-12">
+            <div>&copy; 2026 Saurabh Kumar. All rights reserved.</div>
+            <div class="flex items-center gap-4">
+              <a href="index.html" class="hover:text-white transition-colors">Work</a>
+              <span>·</span>
+              <a href="about.html" class="text-white">About</a>
+              <span>·</span>
+              <a href="https://www.linkedin.com/in/saurabhmotion/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+              <span>·</span>
+              <a href="https://www.instagram.com/sawrabh.motion/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       CONTACT DRAWER (Exact Match to Homepage)
+       ======================================================================== -->
+  <div id="contactScrim" class="contact-scrim" aria-hidden="true"></div>
+
+  <aside id="contactDrawer" class="contact-drawer surface-light" role="dialog" aria-modal="true" aria-label="Send a request">
+    <form id="contactForm" action="https://formspree.io/f/xrpbjyey" method="POST" class="contact-form min-h-full flex flex-col justify-between p-6 sm:p-8 lg:p-10 select-none">
+      
+      <!-- Top Section -->
+      <div class="flex flex-col gap-6 sm:gap-8">
+        
+        <!-- Header row: Mode Switcher + Close Button -->
+        <div class="flex justify-between items-start pb-4 sm:pb-5 border-b border-[#d8d7d7]">
+          <div class="flex flex-col gap-6 sm:gap-8">
+            <!-- Mode Radio Switcher: Business / Message -->
+            <div role="radiogroup" aria-label="Contact mode" class="flex gap-4 sm:gap-5">
+              <button type="button" role="radio" aria-checked="true" data-mode="business" id="modeBtnBusiness" class="contact-pill-btn is-active flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer">
+                <span class="contact-pill-indicator contact-shape-circle"></span>
+                <span>Business</span>
+              </button>
+              <button type="button" role="radio" aria-checked="false" data-mode="message" id="modeBtnMessage" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                <span class="contact-pill-indicator contact-shape-circle"></span>
+                <span>Message</span>
+              </button>
+            </div>
+
+            <!-- Drawer Title -->
+            <h2 id="contactDrawerTitle" class="text-2xl sm:text-3xl font-bold tracking-tight text-[#343131] max-w-[15ch] leading-[1.14]">
+              Send a request
+            </h2>
+          </div>
+
+          <!-- Close Button -->
+          <button type="button" id="contactDrawerCloseBtn" class="text-xs sm:text-[13px] font-semibold text-[#343131] hover:underline underline-offset-4 cursor-pointer p-0 border-0 bg-transparent" aria-label="Close contact drawer">
+            Close
+          </button>
+        </div>
+
+        <!-- Form Body Fields -->
+        <div id="contactFormFields" class="flex flex-col gap-6 sm:gap-7">
+          
+          <!-- Section A: Project Type (Business mode only) -->
+          <div id="contactSectionTypes" class="contact-section-transition">
+            <fieldset class="border-0 p-0 m-0">
+              <legend class="p-0 mb-3 flex items-baseline gap-2">
+                <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What kind of project?</span>
+                <span class="text-[11px] sm:text-xs text-[#343131]/55">You can select multiple</span>
+              </legend>
+              <div class="flex flex-wrap gap-2.5 sm:gap-3" id="projectTypesGroup">
+                <button type="button" role="checkbox" aria-checked="false" data-type="Logo animation" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Logo animation</span>
+                </button>
+                <button type="button" role="checkbox" aria-checked="false" data-type="Saas video" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Saas video</span>
+                </button>
+                <button type="button" role="checkbox" aria-checked="false" data-type="Lottie" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Lottie</span>
+                </button>
+                <button type="button" role="checkbox" aria-checked="false" data-type="Explainer video" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Explainer video</span>
+                </button>
+              </div>
+              <div id="errorTypes" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-2" role="alert">
+                Pick at least one
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Section B: Budget (Business mode only) -->
+          <div id="contactSectionBudget" class="contact-section-transition">
+            <fieldset class="border-0 p-0 m-0">
+              <legend class="p-0 mb-3">
+                <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What's your budget?</span>
+              </legend>
+              <div role="radiogroup" class="flex flex-wrap gap-2.5 sm:gap-3" id="budgetGroup">
+                <button type="button" role="radio" aria-checked="false" data-budget="5k - 20k" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>5k - 20k</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="20k - 40k" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>20k - 40k</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="40k-60k" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>40k-60k</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="60k - 1L" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>60k - 1L</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="1L+" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>1L+</span>
+                </button>
+              </div>
+              <div id="errorBudget" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-2" role="alert">
+                Pick a budget
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Section C: Name -->
+          <div>
+            <label class="flex flex-col gap-1.5 cursor-text">
+              <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What's your name?</span>
+              <input type="text" id="contactInputName" name="name" class="about-field text-sm sm:text-base font-medium text-[#343131]" autocomplete="name" />
+            </label>
+            <div id="errorName" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-1.5" role="alert">
+              We need your name
+            </div>
+          </div>
+
+          <!-- Section D: Email -->
+          <div>
+            <label class="flex flex-col gap-1.5 cursor-text">
+              <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What's your email?</span>
+              <input type="email" id="contactInputEmail" name="email" class="about-field text-sm sm:text-base font-medium text-[#343131]" autocomplete="email" />
+            </label>
+            <div id="errorEmail" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-1.5" role="alert">
+              We need your email
+            </div>
+          </div>
+
+          <!-- Section E: Message / Details -->
+          <div>
+            <label class="flex flex-col gap-1.5 cursor-text">
+              <span id="contactLabelMessage" class="text-xs sm:text-[13px] font-semibold text-[#343131]">Tell me about your project</span>
+              <textarea id="contactInputMessage" name="message" rows="1" class="about-field text-sm sm:text-base font-medium text-[#343131] resize-none overflow-hidden" placeholder=""></textarea>
+            </label>
+            <div id="errorMessage" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-1.5" role="alert">
+              We need a message
+            </div>
+          </div>
+
+          <!-- Honeypot -->
+          <div aria-hidden="true" class="absolute -left-[9999px]">
+            <label>Best time to contact
+              <input type="text" id="contactHoneypot" name="contact_time" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Submit Section -->
+      <div class="mt-8 pt-4">
+        <!-- Success State Confirmation -->
+        <div id="contactStatusSent" class="hidden text-sm sm:text-base font-semibold text-[#343131] py-3" role="status">
+          Sent, thank you. I'll get back to you soon.
+        </div>
+
+        <!-- Submit Button Block -->
+        <div id="contactSubmitBlock">
+          <button type="submit" id="contactSubmitBtn" class="send-block group flex items-end justify-between gap-4 h-[72px] sm:h-[80px] p-4 sm:p-5 border-0 bg-[#171717] text-[#f9fafb] text-left cursor-pointer transition-transform duration-200 active:scale-[0.98]">
+            <!-- Animated Verb -->
+            <span class="send-verb text-sm sm:text-[15px] font-semibold tracking-tight">
+              <span class="send-verb-lead block">Send</span>
+              <span class="send-verb-twin block" aria-hidden="true">Send</span>
+            </span>
+
+            <!-- Animated Arrow -->
+            <span class="send-arrow relative block w-4 h-4 shrink-0 overflow-hidden" aria-hidden="true">
+              <span class="send-arrow-lead block">
+                <svg viewBox="0 0 16 16" fill="none" class="w-4 h-4 block"><path d="M0 6.92V8.92H12L6.5 14.42L7.92 15.84L15.84 7.92L7.92 0L6.5 1.42L12 6.92H0Z" fill="currentColor"/></svg>
+              </span>
+              <span class="send-arrow-twin block">
+                <svg viewBox="0 0 16 16" fill="none" class="w-4 h-4 block"><path d="M0 6.92V8.92H12L6.5 14.42L7.92 15.84L15.84 7.92L7.92 0L6.5 1.42L12 6.92H0Z" fill="currentColor"/></svg>
+              </span>
+            </span>
+          </button>
+
+          <!-- Error Alert Notice -->
+          <div id="contactSubmitError" class="hidden text-xs text-[#e5301d] font-semibold mt-3" role="alert">
+            Something went wrong and nothing was sent — try again, or <a href="mailto:iamsaurabh328@gmail.com" class="underline">email me directly</a>.
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="about.js"></script>
+</body>
+</html>

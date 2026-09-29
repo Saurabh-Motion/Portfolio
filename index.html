@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#1e1e1e] text-[#ededed] h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saurabh Kumar — Designer &amp; Developer</title>
+  <meta name="description" content="Saurabh Kumar is the creative practice of a multidisciplinary designer and developer who can't help but color outside the lines.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDark: '#1e1e1e',
+            borderDark: '#2d2d2d',
+            textMain: '#ededed',
+            textMuted: '#888888',
+            accentPink: '#ffa6c9',
+            vibrantPink: '#ff0055',
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- GSAP & CustomEase -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+
+  <!-- Prevent FOUC: Mark js-ready immediately before body renders -->
+  <script>
+    document.documentElement.classList.add('js-ready');
+  </script>
+</head>
+<body class="bg-[#1e1e1e] text-[#ededed] font-sans antialiased selection:bg-white selection:text-black flex flex-col h-full lg:overflow-hidden">
+
+  <!-- Subtle Film Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR (Exact Match to Reference)
+       ======================================================================== -->
+  <header id="mainHeader" class="w-full border-b border-[#2d2d2d] bg-[#1e1e1e] flex-shrink-0 z-50">
+    
+    <!-- Desktop Navigation Bar (>= 1024px): Aligned with Left Column -->
+    <div class="hidden lg:flex h-11 lg:h-12 items-center">
+      <!-- Left Column: Logo (Matches left column width to start of 'Work') -->
+      <div class="w-[calc(25%+1.75rem)] px-5 lg:px-7 flex items-center h-full flex-shrink-0">
+        <a href="#hero" class="font-bold text-[15px] tracking-tight text-[#ededed] hover:opacity-80 transition-opacity">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="brand">Saurabh Kumar</span></span>
+        </a>
+      </div>
+
+      <!-- Right Column: Nav Links & Contact (Starts right at the divider line) -->
+      <div class="flex-1 flex items-center justify-between h-full pr-5 lg:pr-7">
+        <nav class="flex items-center gap-7 text-[13px] tracking-tight" aria-label="Main navigation">
+          <a href="#work" class="text-white font-normal hover:text-white transition-colors">
+            <span class="reveal-mask"><span class="reveal-child" data-reveal="navWork">Work</span></span>
+          </a>
+          <a href="about.html" class="text-[#888888] font-normal hover:text-white transition-colors">
+            <span class="reveal-mask"><span class="reveal-child" data-reveal="navAbout">About</span></span>
+          </a>
+        </nav>
+
+        <button id="contactNavBtnDesktop" type="button" class="text-[13px] font-normal text-[#ededed] underline underline-offset-4 hover:opacity-80 transition-opacity cursor-pointer border-0 bg-transparent p-0">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="navContact">Contact</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile & Tablet Navigation Bar (< 1024px) -->
+    <div class="flex lg:hidden items-center justify-between h-11 sm:h-12 px-4 sm:px-6 relative w-full">
+      <a href="#hero" class="font-bold text-[15px] tracking-tight text-[#ededed]">
+        <span class="reveal-mask"><span class="reveal-child" data-reveal="brandMobile">Saurabh Kumar</span></span>
+      </a>
+
+      <nav class="flex items-center gap-5 sm:gap-7 text-[13px] tracking-tight" aria-label="Mobile navigation">
+        <a href="#work" class="text-white font-normal">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="navWorkMobile">Work</span></span>
+        </a>
+        <a href="about.html" class="text-[#888888] font-normal hover:text-white transition-colors">
+          <span class="reveal-mask"><span class="reveal-child" data-reveal="navAboutMobile">About</span></span>
+        </a>
+      </nav>
+
+      <button id="contactNavBtnMobile" type="button" class="text-[13px] font-normal text-[#ededed] underline underline-offset-4 hover:opacity-80 cursor-pointer border-0 bg-transparent p-0">
+        <span class="reveal-mask"><span class="reveal-child" data-reveal="navContactMobile">Contact</span></span>
+      </button>
+    </div>
+
+  </header>
+
+  <!-- ========================================================================
+       MAIN SPLIT GRID LAYOUT (Fits 100% viewport on desktop, scrolls on mobile/tablet)
+       ======================================================================== -->
+  <main id="hero" class="flex-1 min-h-0 w-full flex flex-col lg:overflow-hidden">
+    <div class="flex flex-col lg:flex-row divide-y lg:divide-y-0 divide-[#2d2d2d] h-full flex-1 min-h-0">
+
+      <!-- ====================================================================
+           LEFT COLUMN / PROFILE SECTION
+           ==================================================================== -->
+      <aside id="leftAside" class="w-full lg:w-[calc(25%+1.75rem)] flex-shrink-0 p-4 sm:p-6 lg:p-7 flex flex-col lg:h-full min-h-0 bg-[#1e1e1e] lg:border-r border-[#2d2d2d]">
+        
+        <!-- Inner column wrapper: space-between on desktop pins portrait to top and leftBottomBlock to bottom -->
+        <div class="flex flex-col justify-between items-stretch gap-0 h-full w-full">
+          
+          <!-- Portrait + dot: anchored at the top -->
+          <div id="portraitArea" class="flex-shrink-0">
+            <div class="flex items-start justify-between gap-4">
+              <!-- Portrait Image -->
+              <div id="portraitImgWrapper" class="w-28 h-28 sm:w-36 sm:h-36 lg:w-[178px] lg:h-[188px] bg-[#222222] border border-[#2e2e2e]/60 overflow-hidden flex-shrink-0">
+                <img id="portraitImg" src="portrait.png" alt="Saurabh Kumar" class="w-full h-full object-cover grayscale contrast-[1.05]" />
+              </div>
+
+              <!-- Solid White Circle Dot at top right -->
+              <div id="portraitDot" class="w-3.5 h-3.5 rounded-full bg-[#ededed] mt-0.5 reveal-dot" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Services & Social Links: Positioned just above the hairline divider -->
+          <div id="servicesArea" class="flex-shrink-0 min-w-0 mt-4 sm:mt-5 lg:mt-auto mb-2.5 sm:mb-3 lg:mb-3.5">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="text-[#888888] text-[11px] sm:text-xs">
+                  <span class="reveal-mask"><span class="reveal-child" data-reveal="services">Services:</span></span>
+                </div>
+                <div class="text-[#ededed] font-semibold mt-0.5 text-xs sm:text-[13px]">
+                  <span class="reveal-mask"><span class="reveal-child" data-reveal="servicesValue">Motion Design, Visual Design</span></span>
+                </div>
+              </div>
+              <div class="text-right space-y-0.5">
+                <a href="https://www.instagram.com/sawrabh.motion/" target="_blank" rel="noopener noreferrer" class="block text-[#ededed] font-semibold text-xs sm:text-[13px] hover:underline">
+                  <span class="reveal-mask"><span class="reveal-child" data-reveal="instagram">Instagram</span></span>
+                </a>
+                <a href="https://www.linkedin.com/in/saurabhmotion/" target="_blank" rel="noopener noreferrer" class="block text-[#ededed] font-semibold text-xs sm:text-[13px] hover:underline">
+                  <span class="reveal-mask"><span class="reveal-child" data-reveal="linkedin">LinkedIn</span></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Area: Hairline Divider + Metadata (Client/Role) + SVG Shapes
+               Synchronized dynamically relative to scroll elements and Available for work top -->
+          <div id="leftBottomBlock" class="hidden lg:flex flex-col justify-between flex-shrink-0 min-h-0 w-full mt-0">
+
+            <!-- Metadata block with Hairline Divider at top -->
+            <div id="leftMetaBlock" class="flex-shrink-0 min-w-0">
+
+              <!-- Hairline Divider — aligns with Available for work / scroll area across screen sizes -->
+              <div id="hairlineDivider" class="-mx-4 sm:-mx-6 lg:-mx-7 border-t border-[#2e2e2e] mb-2.5 sm:mb-3 lg:mb-3.5 reveal-line-h"></div>
+
+              <!-- Client / View Detail & Role -->
+              <div>
+                <div class="flex items-start justify-between">
+                  <div>
+                    <div class="text-[#888888] text-[11px] sm:text-xs">
+                      <span class="reveal-mask"><span class="reveal-child" data-reveal="client">Client:</span></span>
+                    </div>
+                    <div class="reveal-mask">
+                      <div id="clientDisplay" class="text-[#ededed] font-semibold mt-0.5 text-xs sm:text-[13px] meta-transition reveal-child" data-reveal="clientValue">Juspay Dubai Launch</div>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <button id="viewDetailBtn" class="text-xs sm:text-[13px] font-semibold text-[#ededed] hover:underline cursor-pointer border-0 bg-transparent p-0" type="button">
+                      <span class="reveal-mask"><span class="reveal-child" data-reveal="viewDetail" id="viewDetailText">Watch Video</span></span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mt-2.5 sm:mt-3 lg:mt-3.5">
+                  <div class="text-[#888888] text-[11px] sm:text-xs">
+                    <span class="reveal-mask"><span class="reveal-child" data-reveal="role">Role:</span></span>
+                  </div>
+                  <div class="reveal-mask">
+                    <div id="roleDisplay" class="text-[#ededed] font-semibold mt-0.5 text-xs sm:text-[13px] meta-transition reveal-child" data-reveal="roleValue">Motion Designer, Sound Designer</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Graphic Shapes -->
+            <div id="shapesArea" class="hidden lg:flex w-full items-end justify-start select-none flex-shrink-0 -mb-4 sm:-mb-6 lg:-mb-7 overflow-hidden" aria-hidden="true">
+              <svg class="w-44 sm:w-44 md:w-52 lg:w-full h-auto max-h-[140px] xl:max-h-[180px] block" viewBox="0 0 414 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="shapeGrain" x="0%" y="0%" width="100%" height="100%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" result="noise" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0.93  0 0 0 0 0.93  0 0 0 0 0.93  0 0 0 0.08 0" in="noise" result="coloredNoise" />
+                    <feComposite operator="in" in="coloredNoise" in2="SourceGraphic" result="grain" />
+                    <feBlend mode="multiply" in="SourceGraphic" in2="grain" />
+                  </filter>
+                </defs>
+                <!-- White Textured Circle (Grouped for smooth GPU translation) -->
+                <g id="shapeCircleGroup" class="reveal-shape">
+                  <circle cx="105.5" cy="105" r="104.5" fill="#ededed" filter="url(#shapeGrain)"/>
+                </g>
+                <!-- White Textured Triangle (Grouped for smooth GPU translation) -->
+                <g id="shapeTriangleGroup" class="reveal-shape">
+                  <polygon points="171,209.5 292,0.5 413,209.5" fill="#ededed" filter="url(#shapeGrain)"/>
+                </g>
+              </svg>
+            </div>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+      <!-- ====================================================================
+           RIGHT COLUMN (Main Content Section)
+           ==================================================================== -->
+      <section class="flex-1 min-w-0 flex flex-col justify-between p-4 sm:p-6 lg:p-7 h-full min-h-0 bg-[#1e1e1e]">
+        
+        <!-- Top Area: Showreel Video Section (Top Headline Removed) -->
+        <div class="showreel-top-area flex-shrink-0 flex flex-col gap-2.5 sm:gap-3.5 lg:gap-4 m-0 mb-0 lg:mb-auto">
+          
+          <!-- SEO Accessible Heading -->
+          <h1 class="sr-only">Saurabh Kumar — Multidisciplinary Designer &amp; Developer</h1>
+
+          <!-- Showreel Video Section (Plays infinitely, click to open macOS QuickTime player) -->
+          <div id="showreelSection" class="showreel-container relative w-full aspect-video max-h-none lg:max-h-[33vh] rounded-[2px] overflow-hidden border border-[#2d2d2d] bg-[#141414] group cursor-pointer select-none transition-all duration-300 hover:border-[#4d4d4d]" title="Click to watch">
+            
+            <!-- Video Element (Infinite Loop, Autoplay, Muted by default) -->
+            <video id="showreelVideo" class="w-full h-full object-cover block" autoplay loop muted playsinline preload="auto">
+              <source src="showreel.mp4" type="video/mp4">
+            </video>
+
+            <!-- Procedural Fallback Poster Canvas (Shows if video is uploading/loading) -->
+            <canvas id="showreelCanvas" class="absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-500"></canvas>
+
+            <!-- Top Left: Live Status Pill -->
+            <div id="showreelLivePill" class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 flex items-center gap-1.5 sm:gap-2 pointer-events-none z-20">
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-black/65 backdrop-blur-md border border-white/10 text-[10px] sm:text-[11px] font-mono text-[#ededed] uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Showreel '26
+              </span>
+            </div>
+
+            <!-- Hover Pill for Showreel (Follows cursor, difference blend mode) -->
+            <div id="showreelHoverPillMask" class="gallery-hover-pill-mask" aria-hidden="true" style="width: 100%; height: 100%; top: 0; left: 0;">
+              <div id="showreelHoverPill" class="gallery-hover-pill">
+                <div class="gallery-hover-pill-bg"></div>
+                <div class="gallery-hover-pill-marquee">
+                  <span class="gallery-hover-pill-track">
+                    <span class="gallery-hover-pill-item">Watch Video<span class="gallery-hover-pill-dot"></span></span>
+                    <span class="gallery-hover-pill-item">Watch Video<span class="gallery-hover-pill-dot"></span></span>
+                    <span class="gallery-hover-pill-item">Watch Video<span class="gallery-hover-pill-dot"></span></span>
+                  </span>
+                  <span class="gallery-hover-pill-track" aria-hidden="true">
+                    <span class="gallery-hover-pill-item">Watch Video<span class="gallery-hover-pill-dot"></span></span>
+                    <span class="gallery-hover-pill-item">Watch Video<span class="gallery-hover-pill-dot"></span></span>
+                    <span class="gallery-hover-pill-item">Watch Video<span class="gallery-hover-pill-dot"></span></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Mobile Slot: Metadata block with Hairline Divider at top shifts below showreel on smartphones (< 1024px) -->
+        <div id="mobileMetaSlot" class="block lg:hidden flex-shrink-0 min-w-0 mt-3 sm:mt-3.5"></div>
+
+        <!-- Hairline Divider below Metadata block separating it from Middle Status & Counter Bar -->
+        <div id="mobileMetaDivider" class="block lg:hidden -mx-4 sm:-mx-6 border-t border-[#2e2e2e] my-2.5 sm:my-3 reveal-line-h"></div>
+
+        <!-- Middle Status & Counter Bar (Borderless, anchored above scroll area) -->
+        <div id="statusBar" class="flex items-end justify-between text-xs py-1.5 sm:py-2 flex-shrink-0 my-2 sm:my-3">
+          <!-- Left: Availability -->
+          <div id="availableForWorkContainer">
+            <div id="availableForWork" class="text-[#888888] text-[11px] sm:text-xs font-normal">
+              <span class="reveal-mask"><span class="reveal-child" data-reveal="availability">Available for work</span></span>
+            </div>
+            <div class="text-[#ededed] font-semibold mt-0.5 text-xs sm:text-[13px]">
+              <span class="reveal-mask"><span class="reveal-child" data-reveal="availabilityDate">September '26</span></span>
+            </div>
+          </div>
+
+          <!-- Right: Scroll & Counter -->
+          <div class="text-right">
+            <div class="text-[#888888] text-[11px] sm:text-xs font-normal">
+              <span class="reveal-mask"><span class="reveal-child" data-reveal="scroll">Scroll</span></span>
+            </div>
+            <div class="reveal-mask">
+              <div id="counterDisplay" class="text-[#ededed] font-semibold mt-0.5 text-xs sm:text-[13px] reveal-child" data-reveal="counter">01/05</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================================
+             BOTTOM AREA: HORIZONTAL GALLERY (Increased height for uniform card scaling)
+             ================================================================== -->
+        <div id="galleryContainer" class="gallery-viewport h-[240px] sm:h-[290px] md:h-[360px] lg:h-[52%] flex-shrink-0 min-h-0 -mb-2 sm:-mb-4 lg:-mb-7">
+          <div id="galleryTrack" class="gallery-track">
+            
+            <!-- Card 1: JUSPAY DUBAI LAUNCH (Active by default, 100% height) -->
+            <article class="gallery-card is-active relative overflow-hidden flex-shrink-0 group cursor-pointer" data-index="0">
+              <img src="card1_pink.png" alt="Juspay Dubai Launch - Motion & Sound Design" class="w-full h-full object-cover select-none" draggable="false" />
+            </article>
+
+            <!-- Card 2: BUSSIN DESIGN STUDIO -->
+            <article class="gallery-card relative overflow-hidden flex-shrink-0 group cursor-pointer" data-index="1">
+              <img src="card2_poster.png" alt="Bussin Design Studio - Lottie Animator" class="w-full h-full object-cover select-none" draggable="false" />
+            </article>
+
+            <!-- Card 3: JUSPAY PAYMENTS -->
+            <article class="gallery-card relative overflow-hidden flex-shrink-0 group cursor-pointer" data-index="2">
+              <img src="card3_airplane.png" alt="Juspay Payments - Motion Designer" class="w-full h-full object-cover select-none" draggable="false" />
+            </article>
+
+            <!-- Card 4: JADE -->
+            <article class="gallery-card bg-[#02383a] relative overflow-hidden flex-shrink-0 group cursor-pointer flex items-center justify-center" data-index="3">
+              <img src="card4_road.png" alt="JADE - Motion Designer and Sound Designer" class="w-full h-full object-cover select-none" draggable="false" />
+            </article>
+
+            <!-- Card 5: GOOGLE X JUSPAY -->
+            <article class="gallery-card relative overflow-hidden flex-shrink-0 group cursor-pointer" data-index="4">
+              <img src="card0_connoisseur.png" alt="Google X Juspay - Motion Designer and Sound Designer" class="w-full h-full object-cover select-none" draggable="false" />
+            </article>
+
+          </div>
+
+          <!-- Juan Mora Romero Hover Pill Cursor (Masked to Active Card Plane) -->
+          <div id="galleryHoverPillMask" class="gallery-hover-pill-mask" aria-hidden="true">
+            <div id="galleryHoverPill" class="gallery-hover-pill">
+              <div class="gallery-hover-pill-bg"></div>
+              <div class="gallery-hover-pill-marquee">
+                <span class="gallery-hover-pill-track">
+                  <span class="gallery-hover-pill-item">View Project<span class="gallery-hover-pill-dot"></span></span>
+                  <span class="gallery-hover-pill-item">View Project<span class="gallery-hover-pill-dot"></span></span>
+                  <span class="gallery-hover-pill-item">View Project<span class="gallery-hover-pill-dot"></span></span>
+                </span>
+                <span class="gallery-hover-pill-track" aria-hidden="true">
+                  <span class="gallery-hover-pill-item">View Project<span class="gallery-hover-pill-dot"></span></span>
+                  <span class="gallery-hover-pill-item">View Project<span class="gallery-hover-pill-dot"></span></span>
+                  <span class="gallery-hover-pill-item">View Project<span class="gallery-hover-pill-dot"></span></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       CENTER VIDEO MODAL — Minimal Video Player
+       (Frameless video screen with top-right cross close button,
+        50% reduced corner roundness, and translucent #191919 HUD controls)
+       ======================================================================== -->
+  <div id="videoModal" class="video-modal-backdrop fixed inset-0 z-[70] hidden items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8" role="dialog" aria-modal="true" aria-label="Video Player">
+    
+    <!-- Video Player Card Container (Dynamic aspect ratio with uniform height) -->
+    <div id="videoModalCard" class="video-modal-card relative bg-black rounded-[4px] sm:rounded-[6px] overflow-hidden shadow-2xl border border-white/10 flex flex-col select-none">
+      
+      <!-- Video Media Screen (Dynamic aspect ratio, same uniform height) -->
+      <div id="videoModalMedia" class="relative w-full h-full bg-black cursor-pointer overflow-hidden flex items-center justify-center">
+        
+        <!-- Title Badge (Top Left Corner) -->
+        <div id="videoModalTitleBadge" class="absolute top-3 left-3 sm:top-4 sm:left-4 z-40 px-2.5 sm:px-3 py-1 rounded-full bg-[#191919]/80 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs font-mono uppercase tracking-wider text-white/90 pointer-events-none select-none flex items-center gap-1.5 shadow-lg">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#ff0055] animate-pulse"></span>
+          <span id="videoModalTitleText">Showreel</span>
+        </div>
+
+        <!-- Small Cross Close Button (Top Right Corner) -->
+        <button id="videoModalCloseBtn" class="video-close-btn absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#191919]/80 hover:bg-[#191919] backdrop-blur-md border border-white/15 text-white/70 hover:text-white flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 group" type="button" title="Close (Esc)" aria-label="Close video player">
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:rotate-90 duration-200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <video id="modalVideo" class="w-full h-full object-contain block" playsinline preload="auto">
+          <source src="showreel.mp4" type="video/mp4">
+        </video>
+
+        <!-- YouTube Embed Iframe (Frameless macOS Player Integration) -->
+        <iframe id="modalYoutubeIframe" class="w-full h-full border-0 hidden" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        <!-- Floating QuickTime HUD Control Bar (Using #191919, 20% opacity by default, 100% on hover) -->
+        <div id="quicktimeHud" class="quicktime-hud absolute bottom-3 sm:bottom-5 md:bottom-7 left-1/2 -translate-x-1/2 z-30 w-[94%] sm:w-[86%] max-w-[560px] p-2.5 sm:p-3.5 md:p-4 rounded-xl sm:rounded-2xl flex flex-col gap-2 sm:gap-2.5 transition-all duration-300">
+          
+          <!-- Top Row: Volume, Playback Controls (Rewind, Big Pause/Play, Fast Forward), Gear & List -->
+          <div class="flex items-center justify-between text-white/90">
+            
+            <!-- Left: Speaker Icon + Horizontal Volume Slider -->
+            <div class="flex items-center gap-1.5 sm:gap-2 group/vol">
+              <button id="videoMuteBtn" class="text-white/80 hover:text-white transition-colors cursor-pointer p-0.5" type="button" title="Mute / Unmute">
+                <svg id="volumeHighSvg" class="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                <svg id="volumeMutedSvg" class="w-4 h-4 sm:w-4.5 sm:h-4.5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+              </button>
+              
+              <!-- Horizontal Volume Track with Draggable Knob -->
+              <div id="volumeTrack" class="relative w-10 sm:w-14 md:w-18 h-1 bg-white/20 hover:h-1.5 rounded-full cursor-pointer transition-all flex items-center">
+                <div id="volumeFill" class="h-full bg-white/90 rounded-full" style="width: 100%;"></div>
+                <div id="volumeThumb" class="absolute w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full shadow-md -translate-x-1/2 pointer-events-none" style="left: 100%;"></div>
+              </div>
+            </div>
+
+            <!-- Center: Rewind, Big Pause/Play, Fast Forward -->
+            <div class="flex items-center gap-3 sm:gap-4 md:gap-6 text-white/90">
+              <!-- Rewind 10s -->
+              <button id="videoRewindBtn" class="text-white/80 hover:text-white transition-colors cursor-pointer p-0.5 sm:p-1 hover:scale-110 active:scale-95" type="button" title="Rewind 10s">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
+              </button>
+
+              <!-- Central Pause / Play Button -->
+              <button id="videoPlayPauseBtn" class="text-white hover:text-white transition-all cursor-pointer p-1 hover:scale-110 active:scale-95 flex items-center justify-center" type="button" title="Play / Pause (Space)">
+                <svg id="pauseIconSvg" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+                <svg id="playIconSvg" class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 hidden translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+
+              <!-- Fast Forward 10s -->
+              <button id="videoForwardBtn" class="text-white/80 hover:text-white transition-colors cursor-pointer p-0.5 sm:p-1 hover:scale-110 active:scale-95" type="button" title="Fast Forward 10s">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
+              </button>
+            </div>
+
+            <!-- Right: Settings (Gear) & Playlist/Menu Icons -->
+            <div class="flex items-center gap-1.5 sm:gap-2.5 md:gap-3 text-white/80">
+              <button id="videoSettingsBtn" class="hover:text-white transition-colors cursor-pointer p-0.5" type="button" title="Settings">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-4.5 md:h-4.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              </button>
+              <button id="videoPlaylistBtn" class="hover:text-white transition-colors cursor-pointer p-0.5" type="button" title="Playlist">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-4.5 md:h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Current Time, Scrubber Bar with Playhead Tick, Duration -->
+          <div class="flex items-center gap-2 sm:gap-2.5 md:gap-3 text-[10px] sm:text-[11px] font-mono text-slate-300 select-none">
+            <!-- Current Time -->
+            <span id="videoCurrentTime" class="w-8 sm:w-10 text-left font-medium">00:00</span>
+
+            <!-- Progress Scrubber Track with Vertical Playhead Tick Indicator -->
+            <div id="videoScrubberTrack" class="relative flex-1 h-1 sm:h-1.5 bg-white/20 hover:h-2 rounded-full cursor-pointer transition-all flex items-center group/scrub">
+              <!-- Filled Line -->
+              <div id="videoProgressBar" class="h-full bg-slate-200 rounded-full transition-none" style="width: 0%;"></div>
+              <!-- Vertical Playhead Line Tick -->
+              <div id="videoScrubberThumb" class="absolute w-1 h-3 sm:h-3.5 md:h-4 bg-white rounded-full shadow -translate-x-1/2 pointer-events-none transition-none" style="left: 0%;"></div>
+            </div>
+
+            <!-- Total Duration -->
+            <span id="videoDuration" class="w-8 sm:w-10 text-right font-medium">00:00</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL VIEW DRAWER (Triggers on 'View Detail' or card click)
+       ======================================================================== -->
+  <div id="projectModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 md:p-8 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true">
+    <div class="bg-[#1e1e1e] border border-[#333333] max-w-2xl w-full p-5 sm:p-7 md:p-8 rounded-[2px] shadow-2xl space-y-4 sm:space-y-5 relative max-h-[92vh] overflow-y-auto">
+      <button id="closeModalBtn" class="absolute top-4 sm:top-5 right-4 sm:right-5 text-xs text-[#888888] hover:text-white uppercase font-mono cursor-pointer" type="button">
+        [Close]
+      </button>
+
+      <div>
+        <div id="modalCategory" class="text-xs text-[#888888] uppercase tracking-wider">Identity &amp; Web Platform</div>
+        <h2 id="modalTitle" class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white mt-1">Connoisseur</h2>
+        <div id="modalTagline" class="text-xs font-mono text-[#ffa6c9] mt-1.5">WHERE COURSES GET REVIEWED</div>
+      </div>
+
+      <p id="modalDesc" class="text-xs sm:text-sm text-[#cccccc] leading-relaxed">
+        A high-impact, kinetic visual identity designed for modern online course reviews. Features brutalist physical tape collages, dynamic web animations, and responsive editorial typography.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-3.5 sm:pt-4 border-t border-[#2d2d2d] text-xs font-mono">
+        <div>
+          <div class="text-[#888888]">CLIENT</div>
+          <div id="modalClient" class="text-white mt-0.5">Connoisseur</div>
+        </div>
+        <div>
+          <div class="text-[#888888]">ROLE</div>
+          <div id="modalRole" class="text-white mt-0.5">Designer, Developer</div>
+        </div>
+        <div>
+          <div class="text-[#888888]">YEAR</div>
+          <div id="modalYear" class="text-white mt-0.5">2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CHROMATIC ABERRATION SVG FILTERS (Exact recreation from juanmoraromero.com)
+       Renders real-time Red/Blue channel split driven by velocity & pointer motion
+       ======================================================================== -->
+  <svg id="chromaticFiltersSvg" width="0" height="0" class="absolute pointer-events-none" style="position:fixed; top:-9999px; left:-9999px; width:0; height:0;" aria-hidden="true">
+    <defs>
+      <!-- Gallery Cards Chromatic Aberration Filter -->
+      <filter id="galleryChromaFilter" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feOffset id="galleryChromaRed" in="SourceGraphic" dx="0" dy="0" result="redShift" />
+        <feOffset id="galleryChromaBlue" in="SourceGraphic" dx="0" dy="0" result="blueShift" />
+
+        <feColorMatrix in="redShift" type="matrix"
+          values="1 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="redOnly" />
+
+        <feColorMatrix in="SourceGraphic" type="matrix"
+          values="0 0 0 0 0
+                  0 1 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="greenOnly" />
+
+        <feColorMatrix in="blueShift" type="matrix"
+          values="0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 1 0 0
+                  0 0 0 1 0" result="blueOnly" />
+
+        <feBlend in="redOnly" in2="greenOnly" mode="screen" result="rgBlend" />
+        <feBlend in="rgBlend" in2="blueOnly" mode="screen" result="finalRGB" />
+      </filter>
+
+      <!-- Portrait Chromatic Aberration Filter -->
+      <filter id="portraitChromaFilter" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feOffset id="portraitChromaRed" in="SourceGraphic" dx="0" dy="0" result="portRed" />
+        <feOffset id="portraitChromaBlue" in="SourceGraphic" dx="0" dy="0" result="portBlue" />
+
+        <feColorMatrix in="portRed" type="matrix"
+          values="1 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="portRedOnly" />
+
+        <feColorMatrix in="SourceGraphic" type="matrix"
+          values="0 0 0 0 0
+                  0 1 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="portGreenOnly" />
+
+        <feColorMatrix in="portBlue" type="matrix"
+          values="0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 1 0 0
+                  0 0 0 1 0" result="portBlueOnly" />
+
+        <feBlend in="portRedOnly" in2="portGreenOnly" mode="screen" result="portRg" />
+        <feBlend in="portRg" in2="portBlueOnly" mode="screen" result="portFinal" />
+      </filter>
+
+      <!-- Video Chromatic Aberration Filter -->
+      <filter id="videoChromaFilter" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feOffset id="videoChromaRed" in="SourceGraphic" dx="0" dy="0" result="vidRed" />
+        <feOffset id="videoChromaBlue" in="SourceGraphic" dx="0" dy="0" result="vidBlue" />
+
+        <feColorMatrix in="vidRed" type="matrix"
+          values="1 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="vidRedOnly" />
+
+        <feColorMatrix in="SourceGraphic" type="matrix"
+          values="0 0 0 0 0
+                  0 1 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="vidGreenOnly" />
+
+        <feColorMatrix in="vidBlue" type="matrix"
+          values="0 0 0 0 0
+                  0 0 0 0 0
+                  0 0 1 0 0
+                  0 0 0 1 0" result="vidBlueOnly" />
+
+        <feBlend in="vidRedOnly" in2="vidGreenOnly" mode="screen" result="vidRg" />
+        <feBlend in="vidRg" in2="vidBlueOnly" mode="screen" result="vidFinal" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ========================================================================
+       CONTACT DRAWER (Exact Recreation of juanmoraromero.com)
+       Features:
+       - Mode switcher: "Business" vs "Message"
+       - Kinetic roll "Send" button with arrow animation
+       - Multi-select project type checkboxes
+       - Budget radio choices
+       - Auto-growing message textarea
+       - Desktop side-slide (cubic-bezier(0.8, 0, 0.17, 1)) & mobile bottom-sheet
+       - Backdrop scrim with click-to-close & ESC key handling
+       ======================================================================== -->
+  <div id="contactScrim" class="contact-scrim" aria-hidden="true"></div>
+
+  <aside id="contactDrawer" class="contact-drawer surface-light" role="dialog" aria-modal="true" aria-label="Send a request">
+    <form id="contactForm" action="https://formspree.io/f/xrpbjyey" method="POST" class="contact-form min-h-full flex flex-col justify-between p-6 sm:p-8 lg:p-10 select-none">
+      
+      <!-- Top Section -->
+      <div class="flex flex-col gap-6 sm:gap-8">
+        
+        <!-- Header row: Mode Switcher + Close Button -->
+        <div class="flex justify-between items-start pb-4 sm:pb-5 border-b border-[#d8d7d7]">
+          <div class="flex flex-col gap-6 sm:gap-8">
+            <!-- Mode Radio Switcher: Business / Message -->
+            <div role="radiogroup" aria-label="Contact mode" class="flex gap-4 sm:gap-5">
+              <button type="button" role="radio" aria-checked="true" data-mode="business" id="modeBtnBusiness" class="contact-pill-btn is-active flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer">
+                <span class="contact-pill-indicator contact-shape-circle"></span>
+                <span>Business</span>
+              </button>
+              <button type="button" role="radio" aria-checked="false" data-mode="message" id="modeBtnMessage" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                <span class="contact-pill-indicator contact-shape-circle"></span>
+                <span>Message</span>
+              </button>
+            </div>
+
+            <!-- Drawer Title -->
+            <h2 id="contactDrawerTitle" class="text-2xl sm:text-3xl font-bold tracking-tight text-[#343131] max-w-[15ch] leading-[1.14]">
+              Send a request
+            </h2>
+          </div>
+
+          <!-- Close Button -->
+          <button type="button" id="contactDrawerCloseBtn" class="text-xs sm:text-[13px] font-semibold text-[#343131] hover:underline underline-offset-4 cursor-pointer p-0 border-0 bg-transparent" aria-label="Close contact drawer">
+            Close
+          </button>
+        </div>
+
+        <!-- Form Body Fields -->
+        <div id="contactFormFields" class="flex flex-col gap-6 sm:gap-7">
+          
+          <!-- Section A: Project Type (Business mode only) -->
+          <div id="contactSectionTypes" class="contact-section-transition">
+            <fieldset class="border-0 p-0 m-0">
+              <legend class="p-0 mb-3 flex items-baseline gap-2">
+                <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What kind of project?</span>
+                <span class="text-[11px] sm:text-xs text-[#343131]/55">You can select multiple</span>
+              </legend>
+              <div class="flex flex-wrap gap-2.5 sm:gap-3" id="projectTypesGroup">
+                <button type="button" role="checkbox" aria-checked="false" data-type="Logo animation" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Logo animation</span>
+                </button>
+                <button type="button" role="checkbox" aria-checked="false" data-type="Saas video" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Saas video</span>
+                </button>
+                <button type="button" role="checkbox" aria-checked="false" data-type="Lottie" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Lottie</span>
+                </button>
+                <button type="button" role="checkbox" aria-checked="false" data-type="Explainer video" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-square"></span>
+                  <span>Explainer video</span>
+                </button>
+              </div>
+              <div id="errorTypes" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-2" role="alert">
+                Pick at least one
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Section B: Budget (Business mode only) -->
+          <div id="contactSectionBudget" class="contact-section-transition">
+            <fieldset class="border-0 p-0 m-0">
+              <legend class="p-0 mb-3">
+                <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What's your budget?</span>
+              </legend>
+              <div role="radiogroup" class="flex flex-wrap gap-2.5 sm:gap-3" id="budgetGroup">
+                <button type="button" role="radio" aria-checked="false" data-budget="5k - 20k" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>5k - 20k</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="20k - 40k" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>20k - 40k</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="40k-60k" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>40k-60k</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="60k - 1L" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>60k - 1L</span>
+                </button>
+                <button type="button" role="radio" aria-checked="false" data-budget="1L+" class="contact-pill-btn flex items-center gap-2 text-xs sm:text-[13px] font-semibold text-[#343131] cursor-pointer opacity-55 hover:opacity-85">
+                  <span class="contact-pill-indicator contact-shape-circle"></span>
+                  <span>1L+</span>
+                </button>
+              </div>
+              <div id="errorBudget" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-2" role="alert">
+                Pick a budget
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Section C: Name -->
+          <div>
+            <label class="flex flex-col gap-1.5 cursor-text">
+              <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What's your name?</span>
+              <input type="text" id="contactInputName" name="name" class="about-field text-sm sm:text-base font-medium text-[#343131]" autocomplete="name" />
+            </label>
+            <div id="errorName" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-1.5" role="alert">
+              We need your name
+            </div>
+          </div>
+
+          <!-- Section D: Email -->
+          <div>
+            <label class="flex flex-col gap-1.5 cursor-text">
+              <span class="text-xs sm:text-[13px] font-semibold text-[#343131]">What's your email?</span>
+              <input type="email" id="contactInputEmail" name="email" class="about-field text-sm sm:text-base font-medium text-[#343131]" autocomplete="email" />
+            </label>
+            <div id="errorEmail" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-1.5" role="alert">
+              We need your email
+            </div>
+          </div>
+
+          <!-- Section E: Message / Details -->
+          <div>
+            <label class="flex flex-col gap-1.5 cursor-text">
+              <span id="contactLabelMessage" class="text-xs sm:text-[13px] font-semibold text-[#343131]">Tell me about your project</span>
+              <textarea id="contactInputMessage" name="message" rows="1" class="about-field text-sm sm:text-base font-medium text-[#343131] resize-none overflow-hidden" placeholder=""></textarea>
+            </label>
+            <div id="errorMessage" class="contact-field-error hidden text-xs text-[#e5301d] font-semibold mt-1.5" role="alert">
+              We need a message
+            </div>
+          </div>
+
+          <!-- Honeypot -->
+          <div aria-hidden="true" class="absolute -left-[9999px]">
+            <label>Best time to contact
+              <input type="text" id="contactHoneypot" name="contact_time" tabindex="-1" autocomplete="off" />
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Submit Section -->
+      <div class="mt-8 pt-4">
+        <!-- Success State Confirmation -->
+        <div id="contactStatusSent" class="hidden text-sm sm:text-base font-semibold text-[#343131] py-3" role="status">
+          Sent, thank you. I'll get back to you soon.
+        </div>
+
+        <!-- Submit Button Block -->
+        <div id="contactSubmitBlock">
+          <button type="submit" id="contactSubmitBtn" class="send-block group flex items-end justify-between gap-4 h-[72px] sm:h-[80px] p-4 sm:p-5 border-0 bg-[#171717] text-[#f9fafb] text-left cursor-pointer transition-transform duration-200 active:scale-[0.98]">
+            <!-- Animated Verb: Roll on hover -->
+            <span class="send-verb text-sm sm:text-[15px] font-semibold tracking-tight">
+              <span class="send-verb-lead block">Send</span>
+              <span class="send-verb-twin block" aria-hidden="true">Send</span>
+            </span>
+
+            <!-- Animated Arrow: Roll on hover -->
+            <span class="send-arrow relative block w-4 h-4 shrink-0 overflow-hidden" aria-hidden="true">
+              <span class="send-arrow-lead block">
+                <svg viewBox="0 0 16 16" fill="none" class="w-4 h-4 block"><path d="M0 6.92V8.92H12L6.5 14.42L7.92 15.84L15.84 7.92L7.92 0L6.5 1.42L12 6.92H0Z" fill="currentColor"/></svg>
+              </span>
+              <span class="send-arrow-twin block">
+                <svg viewBox="0 0 16 16" fill="none" class="w-4 h-4 block"><path d="M0 6.92V8.92H12L6.5 14.42L7.92 15.84L15.84 7.92L7.92 0L6.5 1.42L12 6.92H0Z" fill="currentColor"/></svg>
+              </span>
+            </span>
+          </button>
+
+          <!-- Error Alert Notice -->
+          <div id="contactSubmitError" class="hidden text-xs text-[#e5301d] font-semibold mt-3" role="alert">
+            Something went wrong and nothing was sent — try again, or <a href="mailto:iamsaurabh328@gmail.com" class="underline">email me directly</a>.
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </aside>
+
+  <!-- Immediate mobile metadata relocation before paint to prevent layout shift -->
+  <script>
+    (function() {
+      if (window.innerWidth < 1024) {
+        var mb = document.getElementById('leftMetaBlock');
+        var ms = document.getElementById('mobileMetaSlot');
+        if (mb && ms) ms.appendChild(mb);
+      }
+    })();
+  </script>
+
+  <!-- Scripts -->
+  <script src="projects-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

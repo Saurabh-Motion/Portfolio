@@ -1,0 +1,953 @@
+/* ==========================================================================
+   PORTFOLIO STYLING — RECREATION OF REFERENCE (juanmoraromero.com)
+   Viewport-Fit Responsive Architecture
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-dark: #1e1e1e;
+  --bg-surface: #242424;
+  --border-subtle: #2d2d2d;
+  --border-light: rgba(255, 255, 255, 0.08);
+  --text-main: #ededed;
+  --text-muted: #888888;
+  --text-dim: #666666;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  height: 100svh;
+  height: 100dvh;
+}
+
+body {
+  background-color: var(--bg-dark);
+  height: 100%;
+  height: 100svh;
+  height: 100dvh;
+  position: relative;
+  overflow: hidden;
+}
+
+html.page-scrollable,
+body.page-scrollable {
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+@media (max-width: 1023px) {
+  html, body {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100svh;
+  }
+
+  #shapesArea {
+    display: none !important;
+  }
+
+  .showreel-top-area {
+    margin: 0 !important;
+  }
+
+  .showreel-container {
+    aspect-ratio: 16 / 9 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
+/* Subtle Film Grain Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+/* Selection */
+::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* ==========================================================================
+   JUAN MORA ROMERO SIGNATURE ENTRANCE ANIMATIONS
+   Masked line-by-line paragraph/typography reveals with cubic-bezier [0.165, 0.84, 0.44, 1]
+   ========================================================================== */
+
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+  vertical-align: top;
+}
+
+.reveal-mask--inline {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+  vertical-align: top;
+}
+
+/* Zero-FOUC instant hidden state active only before JS timeline completes */
+.js-ready .reveal-child {
+  transform: translateY(120%);
+  will-change: transform;
+}
+
+.js-ready .reveal-dot {
+  transform: scale(0);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.js-ready .reveal-line-h {
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.js-ready .reveal-shape {
+  transform: translateY(220px);
+  will-change: transform;
+}
+
+.js-ready #portraitImg {
+  opacity: 0;
+  transform: scale(1.05);
+  will-change: transform, opacity;
+}
+
+.js-ready #showreelSection {
+  opacity: 0;
+  transform: scale(0.96) translateY(20px);
+  will-change: transform, opacity;
+}
+
+.js-ready #showreelLivePill {
+  opacity: 0;
+  transform: scale(0.85);
+  will-change: transform, opacity;
+}
+
+.js-ready .gallery-card {
+  opacity: 0;
+  transform: translateY(120px);
+  will-change: transform, opacity;
+}
+
+/* Statement Headline Styling (Left Aligned, Above Showreel Video) */
+.statement-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.statement-headline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.14;
+  color: #ededed;
+  margin: 0 !important;
+  text-align: left !important;
+  max-width: 680px;
+  display: block;
+}
+
+/* Bottom Graphic Shapes */
+.bottom-shapes-svg {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+}
+
+/* Responsive Left Bottom Block & Hairline Divider */
+#leftBottomBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  #leftBottomBlock {
+    /* Responsive baseline: 52% (gallery) + 1.75rem (status bar & counter line) */
+    height: calc(52% + 1.75rem);
+    flex-shrink: 0;
+  }
+}
+
+/* Gallery Container & Cards (52% Bottom Area on Desktop) */
+.gallery-viewport {
+  position: relative;
+  width: 100%;
+  height: 52vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+@media (min-width: 1024px) {
+  .gallery-viewport {
+    height: 52%;
+    max-height: 54vh;
+    cursor: grab;
+  }
+  .gallery-viewport.is-dragging,
+  .gallery-viewport:active {
+    cursor: grabbing;
+  }
+}
+
+.gallery-track {
+  display: flex;
+  gap: 0.75rem;
+  height: 100%;
+  align-items: flex-end;
+  will-change: transform, filter;
+}
+
+#portraitArea img,
+#showreelVideo,
+#modalVideo,
+.gallery-card {
+  will-change: filter;
+}
+
+.gallery-card {
+  height: 61.8%;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  align-self: flex-end;
+  background-color: #161616;
+  transition: height 0.65s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gallery-card.is-active {
+  height: 100%;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+
+.gallery-card:hover {
+  border-color: #777777;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .gallery-viewport {
+    --gallery-h: 360px; /* matches height below */
+    overflow-x: auto;
+    /* CSS snap is disabled — JS handles infinite wrap instead */
+    scroll-snap-type: none;
+    -webkit-overflow-scrolling: touch;
+    height: 360px;
+    max-height: 48vw;
+    padding-bottom: 0;
+    cursor: default;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: none;
+  }
+  .gallery-viewport::-webkit-scrollbar {
+    display: none;
+  }
+  .gallery-track {
+    height: 100%;
+    gap: 0.75rem;
+    align-items: flex-end;
+    width: max-content;
+    /* No transform on mobile — native scrollLeft is used */
+    will-change: auto;
+  }
+  .gallery-card {
+    /* Fixed height on mobile — no height change = no offsetLeft shift = no twitching.
+       aspect-ratio: 1/1 keeps cards square. Width adapts to height automatically. */
+    height: 100% !important;
+    aspect-ratio: 1 / 1;
+    /* Kill height transition on mobile — prevents layout reflow during scroll */
+    transition: border-color 0.2s ease, opacity 0.2s ease, box-shadow 0.3s ease;
+  }
+  /* is-active on mobile only adds visual highlight — no height/width change */
+  .gallery-card.is-active {
+    height: 100% !important;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery-viewport {
+    height: 290px;
+    max-height: 54vw;
+  }
+}
+
+@media (max-width: 639px) {
+  .gallery-viewport {
+    height: 240px;
+    max-height: 62vw;
+  }
+}
+
+/* Tape Strip Styling for Connoisseur Card */
+.tape-strip {
+  background-color: #ffa6c9;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(12px, 1.6vw, 20px);
+  letter-spacing: 0.04em;
+  padding: 0.3rem 1.1rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform-origin: center center;
+  user-select: none;
+}
+
+/* Poster Card Shadow Effect */
+.poster-wall {
+  background: radial-gradient(circle at 75% 20%, #444444 0%, #2a2a2a 60%, #1a1a1a 100%);
+  position: relative;
+}
+
+.poster-diagonal-shadow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(0,0,0,0.55) 75%);
+  pointer-events: none;
+}
+
+/* Dynamic Text Transition */
+.meta-transition {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* ==========================================================================
+   Showreel Video Section
+   ========================================================================== */
+.showreel-container {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  max-height: 35vh;
+}
+
+.showreel-container video {
+  transition: transform 0.4s ease;
+}
+
+.showreel-container:hover video {
+  transform: scale(1.015);
+}
+
+@keyframes soundbar {
+  0%, 100% {
+    height: 25%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+/* ==========================================================================
+   Center Video Modal (Dimmed Backdrop, Subtle Blur & Working Controls)
+   ========================================================================== */
+.video-modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  display: flex !important;
+}
+
+.video-modal-card {
+  --player-height: min(80vh, 700px);
+  --player-aspect: 16 / 9;
+  height: var(--player-height);
+  aspect-ratio: var(--player-aspect);
+  width: auto;
+  max-width: 92vw;
+  max-height: 84vh;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px !important;
+  box-shadow:
+    0 30px 80px -15px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .video-modal-card {
+    width: 94vw !important;
+    max-width: calc(82vh * var(--player-aspect, 16 / 9)) !important;
+    height: auto !important;
+    max-height: 82vh !important;
+    aspect-ratio: var(--player-aspect, 16 / 9) !important;
+  }
+
+  #videoModalMedia {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: var(--player-aspect, 16 / 9) !important;
+  }
+}
+
+#videoModalMedia {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: var(--player-aspect);
+  background: #000;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modalVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+#modalVideo.hidden {
+  display: none !important;
+}
+
+#modalYoutubeIframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #000000;
+}
+
+#modalYoutubeIframe.hidden {
+  display: none !important;
+}
+
+#quicktimeHud.hidden {
+  display: none !important;
+}
+
+/* Video Modal Top Right Cross Button */
+.video-close-btn {
+  background-color: rgba(25, 25, 25, 0.8) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.video-close-btn:hover {
+  background-color: #191919 !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Floating QuickTime HUD (Using #191919, 20% opacity by default, 100% on hover) */
+.quicktime-hud {
+  background-color: #191919 !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65),
+              0 0 0 1px rgba(255, 255, 255, 0.05);
+  opacity: 0.2;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quicktime-hud:hover,
+.quicktime-hud.is-active-hover {
+  opacity: 1 !important;
+}
+
+.quicktime-hud.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+}
+
+/* Volume Slider in QuickTime HUD */
+#volumeTrack {
+  user-select: none;
+}
+#volumeThumb {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Scrubber Tick Line in QuickTime HUD */
+#videoScrubberTrack {
+  user-select: none;
+}
+#videoScrubberThumb {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   JUAN MORA ROMERO CARD HOVER PILL CURSOR
+   - Masked to exact bounding box of hovered gallery-card
+   - mix-blend-mode: difference for crisp inverted contrast across any background
+   - Smooth 560ms cubic-bezier(0.165, 0.84, 0.44, 1) scale entrance
+   - Infinite 10s marquee text animation with dot separators
+   ========================================================================== */
+
+.gallery-hover-pill-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  mix-blend-mode: difference;
+  will-change: transform, width, height;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.gallery-hover-pill-mask.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gallery-hover-pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 122px;
+  height: 34px;
+  border-radius: 17px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  transform: translate3d(-1000px, -1000px, 0) translate(-50%, -50%);
+}
+
+.gallery-hover-pill-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: #ffffff;
+  transform: scale(0);
+  transform-origin: center center;
+  transition: transform 0.22s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
+}
+
+.gallery-hover-pill.is-expanded .gallery-hover-pill-bg {
+  transform: scale(1);
+  transition: transform 560ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gallery-hover-pill-marquee {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  min-width: max-content;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 120ms linear;
+  animation: gallery-hover-pill-marquee 10s linear infinite;
+  will-change: transform, opacity;
+}
+
+.gallery-hover-pill.is-expanded .gallery-hover-pill-marquee {
+  opacity: 1;
+  transition: opacity 180ms linear 392ms;
+}
+
+@keyframes gallery-hover-pill-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.gallery-hover-pill-track {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.gallery-hover-pill-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #000000;
+  text-rendering: geometricPrecision;
+}
+
+.gallery-hover-pill-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.35;
+  margin-left: 6px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-hover-pill-marquee {
+    animation: none;
+    opacity: 1;
+    transition: none;
+  }
+  .gallery-hover-pill-bg {
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px), (hover: none) {
+  .gallery-hover-pill-mask {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   JUAN MORA ROMERO CONTACT DRAWER STYLING
+   - Light surface drawer with dark ink and subtle lines
+   - Desktop side slide & Mobile bottom sheet
+   - Kinetic roll verb & arrow hover animation
+   - Custom radio circles & checkbox squares
+   - Auto-growing underlined inputs
+   ========================================================================== */
+
+.surface-light {
+  --color-bg: #f9fafb;
+  --color-ink: #343131;
+  --color-line: #d8d7d7;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+}
+
+.contact-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background-color: rgba(23, 23, 23, 0.32);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.contact-scrim.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.contact-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 100vw);
+  z-index: 85;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  border-left: 1px solid var(--color-line);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.65s cubic-bezier(0.8, 0, 0.17, 1);
+  will-change: transform;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+}
+
+.contact-drawer.is-open {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 1023px) {
+  .contact-drawer {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 84svh;
+    max-height: 84dvh;
+    border-left: none;
+    border-top: 1px solid var(--color-line);
+    border-radius: 14px 14px 0 0;
+    transform: translate3d(0, 100%, 0);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.18);
+  }
+  .contact-drawer.is-open {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Contact Pill Buttons (Radio & Checkbox) */
+.contact-pill-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  transition: opacity 0.2s ease;
+  user-select: none;
+}
+
+.contact-pill-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--color-ink);
+  background: transparent;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-shape-circle {
+  border-radius: 50%;
+}
+
+.contact-shape-square {
+  border-radius: 0;
+}
+
+.contact-pill-btn.is-active {
+  opacity: 1 !important;
+}
+
+.contact-pill-btn.is-active .contact-pill-indicator {
+  background-color: var(--color-ink);
+}
+
+/* Underlined Text Input & Textarea */
+.about-field {
+  width: 100%;
+  color: var(--color-ink);
+  padding: 8px 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #171717;
+  border-radius: 0;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-field:focus {
+  border-bottom-color: #000000;
+  box-shadow: 0 1px 0 #000000;
+}
+
+.about-field.has-error {
+  border-bottom-color: #e5301d !important;
+  box-shadow: 0 1px 0 #e5301d !important;
+}
+
+/* Kinetic Roll Send Button */
+.send-block {
+  width: 48%;
+  min-width: 190px;
+  border-radius: 2px;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .send-block {
+    width: 65%;
+  }
+}
+
+.send-verb {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  line-height: 1.2;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+.send-verb-lead,
+.send-verb-twin {
+  display: block;
+  transition: transform 0.85s cubic-bezier(0.18, 1.4, 0.5, 1);
+  will-change: transform;
+}
+
+.send-verb-twin {
+  position: absolute;
+  inset: 0;
+  transform: translateY(150%);
+}
+
+.send-block:hover .send-verb-lead {
+  transform: translateY(-150%);
+}
+
+.send-block:hover .send-verb-twin {
+  transform: translateY(0%);
+}
+
+.send-arrow {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.send-arrow-lead,
+.send-arrow-twin {
+  display: block;
+  transition: transform 0.85s cubic-bezier(0.18, 1.4, 0.5, 1);
+  will-change: transform;
+}
+
+.send-arrow-twin {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-150%);
+}
+
+.send-block:hover .send-arrow-lead {
+  transform: translateX(150%);
+}
+
+.send-block:hover .send-arrow-twin {
+  transform: translateX(0%);
+}
+
+/* Smooth Transitions for Mode Switching */
+.contact-section-transition {
+  transition: opacity 0.3s ease, max-height 0.35s ease, margin 0.3s ease;
+  overflow: hidden;
+  max-height: 240px;
+  opacity: 1;
+}
+
+.contact-section-transition.is-hidden {
+  opacity: 0;
+  max-height: 0;
+  margin: 0 !important;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   ABOUT PAGE SPECIFIC STYLES
+   ========================================================================== */
+.about-exp-row {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #2d2d2d;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media (min-width: 640px) {
+  .about-exp-row {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 1.25rem 0.75rem;
+    margin: 0 -0.75rem;
+    border-radius: 4px;
+  }
+
+  .about-exp-row:hover {
+    background-color: rgba(255, 255, 255, 0.025);
+  }
+}
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background-color: #262626;
+  color: #a3a3a3;
+  border: 1px solid #363636;
+}
+
